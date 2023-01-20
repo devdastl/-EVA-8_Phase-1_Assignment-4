@@ -14,21 +14,23 @@ While achieving above mentioned target code needs to be writtern under certain c
 
 ### Repository setup:
 This repository contains 4 folders, each folder contains colab copy of notebook of the training code and a model architecture image. Below are the information about the following folders.
-- `step_1/` - This folder (as name suggest) contains colab copy of notebook of first step i.e. first code setup `step_1/EVA_assignment_4-step1.ipynb`. 
-- `step_2/` - This folder contains colab copy of notebook of second step i.e. second code setup `step_2/EVA_assignment_4-step2.ipynb`
-- `step_3/` - This folder contains colab copy of notebook of third step i.e. Third code setup `step_3/EVA_assignment_4-step3.ipynb`
-- `step_4/` - This folder contains colab copy of notebook of fourth step i.e. fourth code setup `step_4/EVA_assignment_4-step4.ipynb`
-- `Bonus_step/` - This assignment has a bonus part in which same target should be achieved in less then 8,000 parameters for bonus points. So this folder contains colab copy of notebook of that extra bonus step code setup `Bonus_step/EVA_assignment_4-Bonusstep.ipynb`
+- step_1/ - This folder (as name suggest) contains colab copy of notebook of first step i.e. first code setup `step_1/EVA_assignment_4-step1.ipynb`. 
+- step_2/ - This folder contains colab copy of notebook of second step i.e. second code setup `step_2/EVA_assignment_4-step2.ipynb`
+- step_3/ - This folder contains colab copy of notebook of third step i.e. Third code setup `step_3/EVA_assignment_4-step3.ipynb`
+- step_4/ - This folder contains colab copy of notebook of fourth step i.e. fourth code setup `step_4/EVA_assignment_4-step4.ipynb`
+- Bonus_step/ - This assignment has a bonus part in which same target should be achieved in less then 8,000 parameters for bonus points. So this folder contains colab copy of notebook of that extra bonus step code setup `Bonus_step/EVA_assignment_4-Bonusstep.ipynb`
 
-This means that required target is achieved in four steps and an extra step to achieve bonus target.
+**NOTE: This means that required target is achieved in four steps and an extra step to achieve bonus target.**
 
 ## Dataset representation
 As mentioned earlier, in this assignment we are using [MNIST Handwritten Digit Dataset](<http://yann.lecun.com/exdb/mnist/>) to train our CNN model to achieve mentioned target. 
 Below is an image representing subset of the image data which we will be using in this assignment.
+
 ![Alt text](step_1/dataset_img.JPG?raw=true "model architecture")
 
 ## First code setup (step 1)
 In this section we will look into the first code setup which is present in `step_1/EVA_assignment_4-step1.ipynb`. We will look into the target set for first code setup step, model architecture, result target, analysis and output logs.
+
 ### Target (step 1)
 Below are the target for step1.
 1. Get the setup correct and working. Because it is required to have basic working code for training and evaluation.
@@ -67,6 +69,7 @@ Following are the analysis of this first code setup:
 
 ## Second code setup (step 2)
 In this section we will look into the second code setup which is present in `step_2/EVA_assignment_4-step2.ipynb`. This is an interesting step where batch normalization is introduced and results looks good.
+
 ### Target (step 2)
 Following are the targets for second code setup.
 1. Improve overall train and test accuracy.
@@ -169,7 +172,7 @@ Following are the analysis of this fourth code setup:
 - Consistant? - YES (consistantly hitting from 6th epoch onward till 20th)
 - parameters - 9,930 (under 10k)
 
-### Training log snippet
+### Training log snippet (step 4)
 ```
 EPOCH: 12
 Loss=0.008368389680981636 Batch_id=937 Accuracy=99.47: 100%|██████████| 938/938 [00:49<00:00, 18.90it/s]
@@ -195,18 +198,18 @@ Test set: Average loss: 0.0169, Accuracy: 9949/10000 (99.49%)
 ## Bonus code setup (bonus step for bonus points)
 In this section we will look into bonus code setup which will try to achieve target for bonus points.
 
-### Target
+### Target (bonus step)
 This is an extra step where we will try to achieve consistant upto 99.4% accruacy under 8k parameters
 1. Since our model is already achieving desired targets in 9,930 parameters. We can utilize same Architecture and reduce parameters count by playing around number of channels.
 2. we want to reduce parameters from 9,930 to something less then 8,000 to get the additional point as mentioned in the assignment.
 
-### Model architecture
+### Model architecture (bonus step)
 Below is an image of model architecture in bonus code setup.
 ![Alt text](Bonus_step/model_arch_bonus-step.JPG?raw=true "model architecture")
 
 - Here we have changed number of channels in almost layers (refer to code `Bonus_step/EVA_assignment_4-BonusStep.ipynb` for more information)
 
-### Result
+### Result (bonus step)
 Below are the results of bonus code setup.
 1. Total number of parameters - 7,926 (<8k)
 1. Training accuracy at 15th epoch - 99.26%
@@ -217,7 +220,7 @@ Below are the results of bonus code setup.
 Below in an graph image produced from training-testing loss and accraucy:
 ![Alt text](Bonus_step/result_graph_bonus-step.JPG?raw=true "model architecture")
 
-### Analysis
+### Analysis (bonus step)
 Following are the analysis of this bonus code setup:
 1. By reducing the number of channels in the fourth code setup CNN, we were able to hit parameter count of 7,926 which is lesser then 8,000.
 2. Reducing parameters count also reduces model complexity which lead to small underfitting as can be seen by test and train accuracy.
@@ -225,9 +228,9 @@ Following are the analysis of this bonus code setup:
 #### **We reached our objective of consistant >99.4% accuracy under 8k parameters and under 15 epochs**
 - Test accuracy at 15th epoch - 99.49%
 - Consistant? - YES (consistantly hitting from 10th epoch onward till 20th)
-- parameters - 7,926 (under 10k)
+- parameters - 7,926 (under 8k)
 
-### Training logs
+### Training log snippet (bonus step)
 ```
 EPOCH: 12
 Loss=0.07796341925859451 Batch_id=937 Accuracy=99.26: 100%|██████████| 938/938 [01:17<00:00, 12.09it/s]
