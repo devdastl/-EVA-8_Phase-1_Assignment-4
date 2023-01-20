@@ -29,7 +29,7 @@ Below is an image representing subset of the image data which we will be using i
 
 ## First code setup (step 1)
 In this section we will look into the first code setup which is present in `step_1/EVA_assignment_4-step1.ipynb`. We will look into the target set for first code setup step, model architecture, result target, analysis and output logs.
-### Target
+### Target (step 1)
 Below are the target for step1.
 1. Get the setup correct and working. Because it is required to have basic working code for training and evaluation.
  - setup basic data transformations like normalization.
@@ -37,7 +37,7 @@ Below are the target for step1.
  - setup training and evaluation loop
 2. Build CNN architecture/skeleton to have <10,000 parameters. Because assignment strongly mentions to have less then 10k parameters, so building larger CNN model is useless and will cause problem in follow-up code setup.
 
-### Model architecture
+### Model architecture (step 1)
 As mentioned in target that we will be targeting a model architecutre which will have less than 10k parameters. Below is an image of model architecture which achieve this target.
 ![Alt text](step_1/model_arch_step1.JPG?raw=true "model architecture")
 Above image also contians inputs and outputs of each layer as well as **Receptive Field and it's calcuation**. Following are the explaination of terms used for **Receptive Field** calculation.
@@ -47,7 +47,7 @@ Above image also contians inputs and outputs of each layer as well as **Receptiv
 - rIN - receptive field of previous layer.
 - rOUT - receptive filed of current layer. Formula for rOUT is `rIN + (kernel_size - 1)xjumpIN`
 
-### Result
+### Result (step 1)
 Below are the result achieved in the first code setup:
 1. Total number of parameters - `9,734 (<10k)`
 2. Training accuracy at 15th epoch - `98.81%`
@@ -58,7 +58,7 @@ Below are the result achieved in the first code setup:
 Also below is the graph generated after training:
 ![Alt text](step_1/result_graph_step1.JPG?raw=true "model architecture")
 
-### Analysis
+### Analysis (step 1)
 Following are the analysis of this first code setup:
 
 1. We build a CNN which is able to train under 10k parameter.
@@ -67,20 +67,20 @@ Following are the analysis of this first code setup:
 
 ## Second code setup (step 2)
 In this section we will look into the second code setup which is present in `step_2/EVA_assignment_4-step2.ipynb`. This is an interesting step where batch normalization is introduced and results looks good.
-### Target
+### Target (step 2)
 Following are the targets for second code setup.
 1. Improve overall train and test accuracy.
 2. Improve model overfitting i.e. reduce difference between train and test accuracy.
 3. Introduce very necessary component known as "batch normalization" in the CNN architecture
 
-### Model architecture
+### Model architecture (step 2)
 Below is an image of model architecture in second code setup.
 ![Alt text](step_2/model_arch_step2.JPG?raw=true "model architecture")
 
 - Since only batch normalization is introduced, Receptive Field calculation and input-output shapes will be same hence not presented in above image.
 - Also as represented, model architecture has four major convoluation blocks and one transition block. (This representation applies for all model mentioned here).
 
-### Result
+### Result (step 2)
 Below are the results of second code setup.
 1. Total number of parameters - `9,930 (<10k) (small increase due to Batch norm learnable mean and standerd deviation)
 2. Training accuracy at 15th epoch - `99.55%`
@@ -91,7 +91,7 @@ Below are the results of second code setup.
 Below in an graph image produced from training-testing loss and accraucy:
 ![Alt text](step_2/result_graph_step2.JPG?raw=true "model architecture")
 
-### Analysis
+### Analysis (step 2)
 Following are the analysis of this second code setup:
 1. Over all accuracy of train and test dataset has been improved by alot (train: 98.81 to 99.55, test: 98.62 to 99.36)while using "Batch Normalization" in CNN architecture compared to the first setup.
 2. "Batch Normalization" normalizes feature map across batches in each layer hence fixing the distribution of data.
@@ -100,5 +100,72 @@ Following are the analysis of this second code setup:
 5. Parameter counts increased by ~150 after adding batch norm because batch norm introduce new learnable parameters i.e. mean and std (alpha, beta).
 
 ## Third code setup (step 3)
+In this section we will look into the third code setup which is present in `step_3/EVA_assignment_4-step3.ipynb`. This is also an interesting step because here we see effect of underfitting while training the same CNN.
 
+### Target (step 3)
+Following are the targets for third code setup.
+1. Reduce the model overfitting.
+2. Introduce "Drop Out" in CNN model. This will also helps with overfitting by randomly killing neurons in a layer while training the model and forcing other layers neuron not to focus on single neuron everytime.
+3. Use image transformation to augment training images. Image Augmentation helps to reduce overfitting by forcing model to fit more images so that any kind of bias is ruled output.
 
+### Model architecture (step 3)
+Below is an image of model architecture in third code setup.
+![Alt text](step_3/model_arch_step3.JPG?raw=true "model architecture")
+
+- Since only Drop Out is introduced, Receptive Field calculation and input-output shapes will be same hence not presented in above image.
+
+### Result (step 3)
+Below are the results of third code setup.
+1. Total number of parameters - `9,930 (<10k)`
+1. Training accuracy at 15th epoch - `98.77%`
+1. Testing accuracy at 15th epoch - `99.16%`
+1. Training accuracy at 20th epoch - `98.84%`
+1. Testing accuracy at 20th epoch - `99.26%`
+
+Below in an graph image produced from training-testing loss and accraucy:
+![Alt text](step_3/result_graph_step3.JPG?raw=true "model architecture")
+
+### Analysis (step 3)
+Following are the analysis of this third code setup:
+1. Model is now underfitting i.e. testing accuracy is larger then training accuracy.
+1. Due to larger underfitting accuracy dropped for both training and testing dataset. Not good for the model performance.
+1. Due to "Drop Out" model could be suffering from excessive regularization which migh have impacted overall perfromance of the model as well as underfitting.
+1. Accuracy is also fluctuating alot due to fluctuation in loss in later epochs. Maybe changing the learning rate in step can help to smooth out the decent.
+
+## Fourth code setup (step 4)
+In this section we will look into the fourth and **final** code setup which is present in `step_4/EVA_assignment_4-step4.ipynb`.
+
+### Target (step 4)
+Following are the targets for fourth code setup.
+1. Improve underfitting of the model by setting Drop Out probablity to 0 i.e. we will not perform Drop Out while training in this code setup.
+1. Improve accuracy/loss fluctuation by introducing step-wise learning rate decay using `StepLR()` under `torch.optim.lr_scheduler`. This is a pytorch module which takes optimizer, decay-rate and step-size to reduce the learning rate while training the model.
+
+### Model architecture (step 4)
+Below is an image of model architecture in fourth code setup.
+![Alt text](step_4/model_arch_step4.JPG?raw=true "model architecture")
+
+- In this architecture "Drop Out" has been removed hence there is no drop out in any layer in above image.
+
+### Result (step 4)
+Below are the results of fourth code setup.
+1. Total number of parameters - `9,930 (<10k)`
+2. Training accuracy at 15th epoch - `99.48%`
+3. Testing accuracy at 15th epoch - `99.49%`
+4. Training accuracy at 20th epoch - `99.45%`
+5. Testing accuracy at 20th epoch - `98.49%`
+
+Below in an graph image produced from training-testing loss and accraucy:
+![Alt text](step_4/result_graph_step4.JPG?raw=true "model architecture")
+
+### Analysis (step 4)
+Following are the analysis of this fourth code setup:
+1. Setting Drop out to 0 (no Drop out) improves model accuracy for both train and test dataset. Means Drop Out was doing excessive regularization in third code setup.
+1. Only data augmentation was enough to solve our overfitting problem in code setup 2.
+1. By introducing Learning rate decay Model is giving consistant accuaracy for training and testing set.
+
+#### We reached our objective of consistant >99.4% accuracy under 10k parameters and under 15 epochs
+- Test accuracy at 15th epoch - 99.49%
+- Consistant? - YES (consistantly hitting from 6th epoch onward till 20th)
+- parameters - 9,930 (under 10k)
+
+## Bonus code setup (bonus step for bonus points)
