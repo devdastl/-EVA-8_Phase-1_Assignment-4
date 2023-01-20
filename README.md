@@ -145,6 +145,7 @@ Below is an image of model architecture in fourth code setup.
 ![Alt text](step_4/model_arch_step4.JPG?raw=true "model architecture")
 
 - In this architecture "Drop Out" has been removed hence there is no drop out in any layer in above image.
+- Last 1x1 convolution does not has any activation, batch norm, etc. because last layer should not have anything.
 
 ### Result (step 4)
 Below are the results of fourth code setup.
@@ -163,9 +164,88 @@ Following are the analysis of this fourth code setup:
 1. Only data augmentation was enough to solve our overfitting problem in code setup 2.
 1. By introducing Learning rate decay Model is giving consistant accuaracy for training and testing set.
 
-#### We reached our objective of consistant >99.4% accuracy under 10k parameters and under 15 epochs
+#### **We reached our objective of consistant >99.4% accuracy under 10k parameters and under 15 epochs**
 - Test accuracy at 15th epoch - 99.49%
 - Consistant? - YES (consistantly hitting from 6th epoch onward till 20th)
 - parameters - 9,930 (under 10k)
 
+### Training log snippet
+```
+EPOCH: 12
+Loss=0.008368389680981636 Batch_id=937 Accuracy=99.47: 100%|██████████| 938/938 [00:49<00:00, 18.90it/s]
+
+Test set: Average loss: 0.0173, Accuracy: 9947/10000 (99.47%)
+
+EPOCH: 13
+Loss=0.004195100627839565 Batch_id=937 Accuracy=99.50: 100%|██████████| 938/938 [00:50<00:00, 18.60it/s]
+
+Test set: Average loss: 0.0170, Accuracy: 9948/10000 (99.48%)
+
+EPOCH: 14
+Loss=0.007462228648364544 Batch_id=937 Accuracy=99.47: 100%|██████████| 938/938 [00:49<00:00, 18.80it/s]
+
+Test set: Average loss: 0.0169, Accuracy: 9952/10000 (99.52%)
+
+EPOCH: 15
+Loss=0.004266421776264906 Batch_id=937 Accuracy=99.48: 100%|██████████| 938/938 [00:49<00:00, 18.80it/s]
+
+Test set: Average loss: 0.0169, Accuracy: 9949/10000 (99.49%)
+```
+
 ## Bonus code setup (bonus step for bonus points)
+In this section we will look into bonus code setup which will try to achieve target for bonus points.
+
+### Target
+This is an extra step where we will try to achieve consistant upto 99.4% accruacy under 8k parameters
+1. Since our model is already achieving desired targets in 9,930 parameters. We can utilize same Architecture and reduce parameters count by playing around number of channels.
+2. we want to reduce parameters from 9,930 to something less then 8,000 to get the additional point as mentioned in the assignment.
+
+### Model architecture
+Below is an image of model architecture in bonus code setup.
+![Alt text](Bonus_step/model_arch_bonus-step.JPG?raw=true "model architecture")
+
+- Here we have changed number of channels in almost layers (refer to code `Bonus_step/EVA_assignment_4-BonusStep.ipynb` for more information)
+
+### Result
+Below are the results of bonus code setup.
+1. Total number of parameters - 7,926 (<8k)
+1. Training accuracy at 15th epoch - 99.26%
+1. Testing accuracy at 15th epoch - 99.46%
+1. Training accuracy at 20th epoch - 99.21%
+1. Testing accuracy at 20th epoch - 98.46%
+
+Below in an graph image produced from training-testing loss and accraucy:
+![Alt text](Bonus_step/result_graph_bonus-step.JPG?raw=true "model architecture")
+
+### Analysis
+Following are the analysis of this bonus code setup:
+1. By reducing the number of channels in the fourth code setup CNN, we were able to hit parameter count of 7,926 which is lesser then 8,000.
+2. Reducing parameters count also reduces model complexity which lead to small underfitting as can be seen by test and train accuracy.
+
+#### **We reached our objective of consistant >99.4% accuracy under 8k parameters and under 15 epochs**
+- Test accuracy at 15th epoch - 99.49%
+- Consistant? - YES (consistantly hitting from 10th epoch onward till 20th)
+- parameters - 7,926 (under 10k)
+
+### Training logs
+```
+EPOCH: 12
+Loss=0.07796341925859451 Batch_id=937 Accuracy=99.26: 100%|██████████| 938/938 [01:17<00:00, 12.09it/s]
+
+Test set: Average loss: 0.0197, Accuracy: 9946/10000 (99.46%)
+
+EPOCH: 13
+Loss=0.016041133552789688 Batch_id=937 Accuracy=99.23: 100%|██████████| 938/938 [01:17<00:00, 12.11it/s]
+
+Test set: Average loss: 0.0197, Accuracy: 9949/10000 (99.49%)
+
+EPOCH: 14
+Loss=0.0026311047840863466 Batch_id=937 Accuracy=99.24: 100%|██████████| 938/938 [01:17<00:00, 12.06it/s]
+
+Test set: Average loss: 0.0195, Accuracy: 9946/10000 (99.46%)
+
+EPOCH: 15
+Loss=0.007067004218697548 Batch_id=937 Accuracy=99.26: 100%|██████████| 938/938 [01:16<00:00, 12.31it/s]
+
+Test set: Average loss: 0.0201, Accuracy: 9944/10000 (99.44%)
+```
