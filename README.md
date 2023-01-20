@@ -64,3 +64,41 @@ Following are the analysis of this first code setup:
 1. We build a CNN which is able to train under 10k parameter.
 2. Highest train and test accuracy (20th epoch) is 99.0% and 98.73% resp. which is very less. Accuracy can be further improved.
 3. Based on accuracy, model seems to be overfitting as training accuracy is larger then testing accruacy.
+
+## Second code setup (step 2)
+In this section we will look into the second code setup which is present in `step_2/EVA_assignment_4-step2.ipynb`. This is an interesting step where batch normalization is introduced and results looks good.
+### Target
+Following are the targets for second code setup.
+1. Improve overall train and test accuracy.
+2. Improve model overfitting i.e. reduce difference between train and test accuracy.
+3. Introduce very necessary component known as "batch normalization" in the CNN architecture
+
+### Model architecture
+Below is an image of model architecture in second code setup.
+![Alt text](step_2/model_arch_step2.JPG?raw=true "model architecture")
+
+- Since only batch normalization is introduced, Receptive Field calculation and input-output shapes will be same hence not presented in above image.
+- Also as represented, model architecture has four major convoluation blocks and one transition block. (This representation applies for all model mentioned here).
+
+### Result
+Below are the results of second code setup.
+1. Total number of parameters - `9,930 (<10k) (small increase due to Batch norm learnable mean and standerd deviation)
+2. Training accuracy at 15th epoch - `99.55%`
+3. Testing accuracy at 15th epoch - `99.36%`
+4. Training accuracy at 20th epoch - `99.62%`
+5. Testing accuracy at 20th epoch - `99.43%`
+
+Below in an graph image produced from training-testing loss and accraucy:
+![Alt text](step_2/result_graph_step2.JPG?raw=true "model architecture")
+
+### Analysis
+Following are the analysis of this second code setup:
+1. Over all accuracy of train and test dataset has been improved by alot (train: 98.81 to 99.55, test: 98.62 to 99.36)while using "Batch Normalization" in CNN architecture compared to the first setup.
+2. "Batch Normalization" normalizes feature map across batches in each layer hence fixing the distribution of data.
+3. There is still exist the problem of overfitting as training accuracy is still larger then testing accruacy although the gap is now smaller comare to first setup.
+4. We didn't reach the target of 99.4% test accuracy in the second code setup.
+5. Parameter counts increased by ~150 after adding batch norm because batch norm introduce new learnable parameters i.e. mean and std (alpha, beta).
+
+## Third code setup (step 3)
+
+
