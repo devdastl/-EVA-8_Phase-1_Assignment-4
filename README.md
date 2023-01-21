@@ -202,6 +202,7 @@ In this section we will look into bonus code setup which will try to achieve tar
 This is an extra step where we will try to achieve consistant upto 99.4% accruacy under 8k parameters
 1. Since our model is already achieving desired targets in 9,930 parameters. We can utilize same Architecture and reduce parameters count by playing around number of channels.
 2. we want to reduce parameters from 9,930 to something less then 8,000 to get the additional point as mentioned in the assignment.
+3. Lets also add another augmentation known as ColorJitter which will play around with the brightness, contrast, etc. This will allow us to learn more rich features from image.
 
 ### Model architecture (bonus step)
 Below is an image of model architecture in bonus code setup.
